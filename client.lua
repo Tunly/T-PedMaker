@@ -1080,7 +1080,6 @@ AddEventHandler('onResourceStart', function(resourceName)
 		TriggerServerEvent('tunlysPedMaker:server:refreshJSON')
 		TriggerServerEvent('tunlysPedMaker:server:spawnPeds')
 	end
-	print('Thanks for using: ' .. resourceName .. ' <3')
 end)
 
 
