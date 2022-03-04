@@ -1075,8 +1075,12 @@ continue.OnItemSelect = function(sender, item, index)
 end
 
 AddEventHandler('onResourceStart', function(resourceName)
-	TriggerServerEvent('tunlysPedMaker:server:refreshJSON')
-	TriggerServerEvent('tunlysPedMaker:server:spawnPeds')
+	
+	if (GetCurrentResourceName() == resourceName) then
+		TriggerServerEvent('tunlysPedMaker:server:refreshJSON')
+		TriggerServerEvent('tunlysPedMaker:server:spawnPeds')
+	end
+	print('Thanks for using: ' .. resourceName .. ' <3')
 end)
 
 
@@ -1120,8 +1124,8 @@ Citizen.CreateThread(function()
 				v = spawnedPeds[i]
 				
 				local distance = Vdist(lplayerCoords.x, lplayerCoords.y, lplayerCoords.z, tonumber(spawnedPeds[i].x), tonumber(spawnedPeds[i].y), tonumber(spawnedPeds[i].z - 1.0))
-				if distance < tonumber(spawnedPeds[i].renderDist) then
-					if not v.isRendered then
+				if distance < tonumber(spawnedPeds[i].renderDist)then
+					if v.isRendered ~= true then
 						
 						lped = CreatePed(4, GetHashKey(spawnedPeds[i].pedModel), tonumber(spawnedPeds[i].x), tonumber(spawnedPeds[i].y), tonumber(spawnedPeds[i].z - 1.0), tonumber(spawnedPeds[i].heading), false, false)
 						RequestModel(GetHashKey(spawnedPeds[i].pedModel))
